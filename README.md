@@ -2,9 +2,14 @@
 
 Project Goal:
 ------------
+
 The goal of this project is to train an AI agent to achieve an average score of over 200 points per episode in the Lunar Lander game using reinforcement learning techniques.
 
 Environment:
+
+https://github.com/Earnoo/DDQN-DQN-on-Lunarlander/assets/134099561/e43cb35a-c17b-4c56-a4ec-8839d679c1f7
+
+
 ------------
 The Lunar Lander environment from OpenAI Gym is utilized. It consists of a continuous state space with 8 dimensions:
 (x, y, v_x, v_y, theta, v_theta, leg_left, leg_right)
