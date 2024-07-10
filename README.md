@@ -120,8 +120,6 @@ $ pip3 install -r requirements.txt
 ```
 
 ## Output
-```
-Initialize the environment...
 
 ## Results
 ### Learning episodes
@@ -145,11 +143,9 @@ https://github.com/Earnoo/DDQN-DQN-on-Lunarlander/assets/134099561/5d811f87-e87d
 ### DDQN Agent
 https://github.com/Earnoo/DDQN-DQN-on-Lunarlander/assets/134099561/7f02f4de-dec3-43f8-b9d0-b83094737411
 
-## Authors
-* **[Ning Shi](https://mrshininnnnn.github.io/)** - MrShininnnnn@gmail.com
-
 ## Reference
 1. Hasselt, H. V. (2010). Double Q-learning. In Advances in neural information processing systems (pp. 2613-2621).
 2. Van Hasselt, H., Guez, A., & Silver, D. (2016, March). Deep reinforcement learning with double q-learning. In Thirtieth AAAI conference on artificial intelligence.
 3. Brockman, G., Cheung, V., Pettersson, L., Schneider, J., Schulman, J., Tang, J., & Zaremba, W. (2016). Openai gym. arXiv preprint arXiv:1606.01540.
 4. Fujimoto, S., Van Hoof, H., & Meger, D. (2018). Addressing function approximation error in actor-critic methods. arXiv preprint arXiv:1802.09477.
+5. (https://mrshininnnnn.github.io/)
