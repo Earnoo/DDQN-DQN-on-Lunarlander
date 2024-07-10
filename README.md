@@ -1,23 +1,36 @@
 # DDQN Lunar Lander
 
-## Introduction
-The goal of this project is to earn more than +200 reward on average over 100 trials in the game [Lunar Lander](https://gym.openai.com/envs/LunarLander-v2/). To tackle this challenge, a Double Deep Q-Network (DDQN) (Hasselt et al. 2016) is introduced and implemented with a detailed explanation.
+Project Goal:
+------------
+The goal of this project is to train an AI agent to achieve an average score of over 200 points per episode in the Lunar Lander game using reinforcement learning techniques.
 
-## Lunar Lander
-<p align="center"><img src="./res/Lunar_Lander.gif" alt="Lunar Lander"  width="320" /></p>
-<p align="center">(https://gym.openai.com/envs/LunarLander-v2/)</p>
+Environment:
+------------
+The Lunar Lander environment from OpenAI Gym is utilized. It consists of a continuous state space with 8 dimensions:
+(x, y, v_x, v_y, theta, v_theta, leg_left, leg_right)
 
-Lunar Lander of OpenAI Gym (Brockman et al. 2016) is an interactive environment for an agent to land a rocket on a planet. A state here can be represented by an 8-dimensional continuous space:  
+Actions:
+--------
+There are 4 discrete actions available:
+1. Do nothing
+2. Fire left orientation engine
+3. Fire main engine
+4. Fire right orientation engine
 
-$$ (x, y, v_{x}, v_{y}, v_{\theta}, leg_{left}, leg_{right}) $$  
+Scoring:
+--------
+- Landing on the landing pad: +100 points
+- Crashing or going out of bounds: -100 points
+- Each main engine firing (action 3): -0.3 points
+- Each leg contact with the ground: +10 points
 
-, where $x$ and $y$ are the coordinates of the lander's position; $v_{x}$ and $v_{y}$ are the velocity components on two axes; $\theta$ and $v_{\theta}$ are the angle and the angular velocity separately; $leg_{left}$ and $leg_{right}$ are two binary values standing for whether the left or right leg of the lander is touching the ground.
+Implementation:
+---------------
+The agent is implemented using a Deep Q-Network (DQN) algorithm in Python with TensorFlow and OpenAI Gym. The project includes code for training the agent to learn optimal policies for landing the Lunar Lander.
 
-For each time step, there are four discrete actions available, that is, doing nothing, firing the left orientation engine, firing the main engine, and firing the right orientation engine.
+For more details and code examples, please refer to the accompanying Python scripts.
 
-The game will be over or passed if the lander crashes or comes to rest. The reward for a bad ending is -100, while that for a happy ending is +100. The touching of the leg to the ground can generate a +10 reward, but each time of firing the main engine incurs a -0.3 penalty. Therefore, the total reward for a single episode ranges from 100 to more than 200 based on the final location of the lander on the pad. The distance between the landing pad and the lander will cause a penalization, which equals to the reward gained by moving closer to the pad. 
 
-In this project, a method will be treated as a successful solution for this game if it is able to achieve more than +200 points average over 100 consecutive episodes.
 
 ## Double Deep Q-Network
 In 2010, Hasselt found an overestimation bias when using Q-Learning to solve several Atari games. Taking a special state as an example, where the real Q value for every action equals zero, the estimated Q values will be around zero and cause the overestimation of Q values. There is a big problem with learning estimates from estimates in the Q-Learning method. Fortunately, it can be tackled by employing two separate Q-value estimators updating each other. Thus, this approach has the name Double Q-Learning, which is one of the most popular methods in recent years (Hasselt 2010; Van Hasselt, Guez, and Silver 2016; Fujimoto, van Hoof, and Meger 2018). Borrowing the idea of Hasselt et al. (2016), we applied the Double Deep Q-Network (DDQN) with the assistance of deep learning.
