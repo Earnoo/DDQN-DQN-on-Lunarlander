@@ -7,8 +7,7 @@ The goal of this project is to train an AI agent to achieve an average score of 
 
 Environment:
 
-https://github.com/Earnoo/DDQN-DQN-on-Lunarlander/assets/134099561/e43cb35a-c17b-4c56-a4ec-8839d679c1f7
-
+https://github.com/Earnoo/DDQN-DQN-on-Lunarlander/assets/134099561/01ae160e-9e3f-40f3-8072-52354a722a16
 
 ------------
 The Lunar Lander environment from OpenAI Gym is utilized. It consists of a continuous state space with 8 dimensions:
@@ -124,15 +123,27 @@ $ pip3 install -r requirements.txt
 ```
 Initialize the environment...
 
-
 ## Results
+### Learning episodes
+#### Episode 50
 
-### Random Agent
-<p align="center"><img src="./res/Random_Agent.gif" alt="Random Agent"  width="320" /></p>
+https://github.com/Earnoo/DDQN-DQN-on-Lunarlander/assets/134099561/ccfc2f08-6b05-496b-b917-c3f57fa4296a
 
+#### Episode 100
+https://github.com/Earnoo/DDQN-DQN-on-Lunarlander/assets/134099561/7fe1b6ab-95d1-44fd-89bc-2c18e8517e03
+
+#### Episode 250
+
+https://github.com/Earnoo/DDQN-DQN-on-Lunarlander/assets/134099561/2e1a6616-7add-4841-bce8-b9d2bc8b56d0
+
+#### Episode 350
+
+https://github.com/Earnoo/DDQN-DQN-on-Lunarlander/assets/134099561/800e142d-8c1d-4319-98a4-fbd192cc6c92
+
+### DQN
+https://github.com/Earnoo/DDQN-DQN-on-Lunarlander/assets/134099561/5d811f87-e87d-4b4d-b6bf-ac7f281adf8e
 ### DDQN Agent
-<p align="center"><img src="./output/ddqn_agent/result_img_0.png" alt="Result 0"  width="405" /> <img src="./output/ddqn_agent/result_img_1.png" alt="Result 1"  width="405" /></p>
-<p align="center"><img src="./res/DDQN_Agent.gif" alt="DDQN Agent"  width="320" /></p>
+https://github.com/Earnoo/DDQN-DQN-on-Lunarlander/assets/134099561/7f02f4de-dec3-43f8-b9d0-b83094737411
 
 ## Authors
 * **[Ning Shi](https://mrshininnnnn.github.io/)** - MrShininnnnn@gmail.com
