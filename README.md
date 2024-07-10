@@ -44,28 +44,57 @@ Where:
 DQN employs Experience Replay and a Target Network to improve learning stability and efficiency. In Experience Replay, agent experiences are stored in a memory buffer and sampled randomly to reduce correlations between experiences. The Target Network is a copy of the main network that is periodically updated episodically to mitigate large fluctuations during learning.
 
 ## Double Deep Q-Network
-In 2010, Hasselt found an overestimation bias when using Q-Learning to solve several Atari games. Taking a special state as an example, where the real Q value for every action equals zero, the estimated Q values will be around zero and cause the overestimation of Q values. There is a big problem with learning estimates from estimates in the Q-Learning method. Fortunately, it can be tackled by employing two separate Q-value estimators updating each other. Thus, this approach has the name Double Q-Learning, which is one of the most popular methods in recent years (Hasselt 2010; Van Hasselt, Guez, and Silver 2016; Fujimoto, van Hoof, and Meger 2018). Borrowing the idea of Hasselt et al. (2016), we applied the Double Deep Q-Network (DDQN) with the assistance of deep learning.
+Double Deep Q-Network (DDQN) is an advanced version of the Deep Q-Network (DQN) that addresses issues of stability and learning accuracy in reinforcement learning. The primary issue with DQN is overestimation of Q-values due to using the same network for action selection and evaluation. DDQN mitigates this problem by separating these two tasks into two distinct networks.
 
-## Directory
-+ **main.py** - to conduct the entire project directly and show some figures
-+ **main.ipynb** - to go through the modeling, training, and evaluation step by step
-+ **config.py** - to set the configuration for model development and training pipeline
-```
-DDQN-Lunar-Lander/
-├── README.md
-├── config.py
-├── main.ipynb
-├── main.py
-├── output
-│   ├── ddqn_agent
-│   └── random_agent
-├── reference
-├── requirements.txt
-├── res
-└── src
-    ├── agent.py
-    └── model.py
-```
+In DDQN, two neural networks are employed:
+- Policy Network or Main Network: Used for action selection.
+- Target Network: Used for evaluating Q-values.
+
+The update equations in DDQN are as follows:
+
+### Action Selection
+
+Initially, actions are chosen using the Policy Network:
+
+a* = arg max_a Q(s, a; θ)
+
+### Computing Target Q-Value
+
+Subsequently, the target Q-value is computed using the Target Network:
+
+Q_target = r + γ Q(s', a*; θ^-)
+
+Where:
+- r: Received reward
+- γ: Discount factor
+- s': Next state
+- θ: Parameters of the Policy Network
+- θ^-: Parameters of the Target Network
+
+### Updating Policy Network Parameters
+
+The mean squared error between the target Q-values and predicted Q-values by the Policy Network is computed:
+
+loss = (1 / N) Σ_{i=1}^N (Q_target - Q(s, a; θ))^2
+
+The parameters of the Policy Network are updated using an optimization algorithm (such as Adam).
+
+### Comparing DDQN and DQN
+
+The main difference between DDQN and DQN lies in how the target Q-value is computed. In DQN, the target Q-value is computed as:
+
+Q_target = r + γ max_{a'} Q(s', a'; θ)
+
+This leads to Q-values being overestimated due to using the same network for action selection and evaluation. In contrast, DDQN uses two separate networks for these tasks, which helps reduce overestimation.
+
+In summary:
+- DQN uses one network for both action selection and evaluation, leading to overestimation.
+- DDQN uses two separate networks, which separates action selection and evaluation tasks and helps reduce overestimation.
+
+This improvement allows DDQN to exhibit greater stability in the learning process and achieve better performance in various reinforcement learning tasks.
+
+The following code implements the Double Deep Q-Network (DDQN), introduced by Hasselt et al. in 2016. This code includes three main sections: the neural network model, experience replay memory, and the DDQN agent. Each section of the code is detailed further below.
+
 
 ## Dependencies
 + python >= 3.7.2
@@ -86,15 +115,9 @@ $ pip3 install pip --upgrade
 $ pip3 install -r requirements.txt
 ```
 
-To generate video record for an episode: 
-* On OS X, you can install ffmpeg via `brew install ffmpeg`. 
-* On most Ubuntu variants, `sudo apt-get install ffmpeg` should do it. 
-* On Ubuntu 14.04, however, you'll need to install avconv with `sudo apt-get install libav-tools`.
-
 ## Output
 ```
 Initialize the environment...
-
 
 
 ## Results
