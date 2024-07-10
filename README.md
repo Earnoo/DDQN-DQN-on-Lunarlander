@@ -24,13 +24,24 @@ Scoring:
 - Each main engine firing (action 3): -0.3 points
 - Each leg contact with the ground: +10 points
 
-Implementation:
----------------
-The agent is implemented using a Deep Q-Network (DQN) algorithm in Python with TensorFlow and OpenAI Gym. The project includes code for training the agent to learn optimal policies for landing the Lunar Lander.
+## Deep Q-Network
+Deep Q-Network (DQN) is a reinforcement learning method that utilizes deep neural networks to approximate the Q-function. The Q-function represents the expected total reward value from taking action $a$ in state $s$ and following the optimal policy thereafter.
 
-For more details and code examples, please refer to the accompanying Python scripts.
+In DQN, a deep neural network is used as an approximator to calculate Q-values for state-action pairs.
 
+The Q-function update equation in DQN is given by:
 
+Q(s_t, a_t) <- Q(s_t, a_t) + α [r_t + γ max_{a'} Q(s_{t+1}, a') - Q(s_t, a_t)]
+
+Where:
+- $s_t$: State at time $t$
+- $a_t$: Action taken at time $t$
+- $r_t$: Reward received at time $t$
+- $s_{t+1}$: New state after taking action $a_t$
+- $\alpha$: Learning rate
+- $\gamma$: Discount factor
+
+DQN employs Experience Replay and a Target Network to improve learning stability and efficiency. In Experience Replay, agent experiences are stored in a memory buffer and sampled randomly to reduce correlations between experiences. The Target Network is a copy of the main network that is periodically updated episodically to mitigate large fluctuations during learning.
 
 ## Double Deep Q-Network
 In 2010, Hasselt found an overestimation bias when using Q-Learning to solve several Atari games. Taking a special state as an example, where the real Q value for every action equals zero, the estimated Q values will be around zero and cause the overestimation of Q values. There is a big problem with learning estimates from estimates in the Q-Learning method. Fortunately, it can be tackled by employing two separate Q-value estimators updating each other. Thus, this approach has the name Double Q-Learning, which is one of the most popular methods in recent years (Hasselt 2010; Van Hasselt, Guez, and Silver 2016; Fujimoto, van Hoof, and Meger 2018). Borrowing the idea of Hasselt et al. (2016), we applied the Double Deep Q-Network (DDQN) with the assistance of deep learning.
